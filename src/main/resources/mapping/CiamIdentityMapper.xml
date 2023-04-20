@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fsg.hps.auth.dao.mapper.CiamIdentityMapper">
+
+    <select id="selectByOpenIdAndPhone" resultType="com.fsg.hps.auth.dao.model.CiamIdentityPO">
+        SELECT id,
+               mobile_no,
+               identity_card,
+               open_id,
+               creator_name,
+               creator,
+               create_time,
+               updater_name,
+               updater,
+               update_time
+        FROM ciam_identity
+        WHERE open_id = #{openId}
+          AND mobile_no = #{phone} LIMIT 1;
+    </select>
+</mapper>

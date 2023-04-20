@@ -1,0 +1,36 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: hps-delivery-manage-service
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        username: health
+        password: health
+        # 服务注册地址
+        server-addr: ${NACOS_ADDRESS_SECRET:nacos-service.ac}:8848
+        namespace: ${NACOS_NAMESPACE_SECRET:d7ae8446-19c6-4872-b776-03f5cb0e3f3f}
+      config:
+        username: health
+        password: health
+        # 配置中心地址
+        server-addr: ${NACOS_ADDRESS_SECRET:nacos-service.ac}:8848
+        namespace: ${NACOS_NAMESPACE_SECRET:d7ae8446-19c6-4872-b776-03f5cb0e3f3f}
+        # 配置文件格式
+        file-extension: yaml
+        # 共享配置
+        shared-configs:
+          - global-application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

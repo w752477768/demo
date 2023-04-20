@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: product
+  profiles:
+    active: prod
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        server-addr: nacos-service:8848
+        file-extension: yaml
+        namespace: f46c76ba-f7c5-4bf8-b169-f95ad3102bb2
+        username: product
+        password: product
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
